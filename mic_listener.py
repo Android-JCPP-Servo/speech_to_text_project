@@ -18,7 +18,7 @@ p = pya.PyAudio()
 def record_audio():
     # Establish audio stream for listening and recording
     stream = p.open(
-        format=FORMAT, 
+        format=FORMAT,
         channels=CHANNELS,
         rate=RATE,
         input=True,
