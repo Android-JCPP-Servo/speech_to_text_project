@@ -29,6 +29,8 @@ def predict_audio():
 
 # Run full program
 if __name__ == "__main__":
+    # Inform the user the program is running
+    print("I'm listening...")
     # While program is running...
     while True:
         # Get the predicted command
