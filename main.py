@@ -16,3 +16,13 @@ commands = ['stop', 'yes', 'right', 'left', 'go', 'up', 'down', 'no']
 
 # Load model from saved_model
 loaded_model = models.load_model("saved_model")
+
+# Helper function to predict audio
+def predict_audio():
+    audio = record_audio()
+    spec = preprocess_buffer(audio)
+    prediction = loaded_model(spec)
+    label_pred = np.argmax(prediction, axis=1)
+    command = commands[label_pred[0]]
+    print("Predicted label:", command)
+    return command
