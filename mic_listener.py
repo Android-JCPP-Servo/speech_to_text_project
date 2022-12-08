@@ -25,8 +25,6 @@ def record_audio():
         frames_per_buffer=FRAMES_PER_BUFFER
     )
 
-    print("I'm listening...")
-
     # Initialize empty frames and number of seconds, which will be used to establish number of samples within recording
     frames = []
     seconds = 1
@@ -39,6 +37,9 @@ def record_audio():
     # Stop and close stream
     stream.stop_stream()
     stream.close()
+
+    # Join frames and return buffer
+    return np.frombuffer(b''.join(frames), dtype=np.int16)
 
 # Terminate PyAudio I/O
 def terminate():
