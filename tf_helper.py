@@ -15,8 +15,20 @@ np.random.seed(seed)
 
 # Method for getting or calling waveform object, then transforming it into a spectrogram
 def get_spectrogram(waveform):
+    # Zero-padding for an audio waveform with less than 16,000 samples.
+    input_len = 16000
+    waveform = waveform[:input_len]
+    zero_padding = tf.zeros(
+        [16000] - tf.shape(waveform),
+        dtype=tf.float32)
+    # Cast the waveform tensors' dtype to float32.
+    waveform = tf.cast(waveform, dtype=tf.float32)
+    # Concatenate the waveform with `zero_padding`, which ensures all audio
+    # clips are of the same length.
+    equal_length = tf.concat([waveform, zero_padding], 0)
     # Convert the waveform to a spectrogram via a STFT.
-    spectrogram = tf.signal.stft(waveform, frame_length=255, frame_step=128)
+    spectrogram = tf.signal.stft(
+        equal_length, frame_length=255, frame_step=128)
     # Obtain the magnitude of the STFT.
     spectrogram = tf.abs(spectrogram)
     # Add a `channels` dimension, so that the spectrogram can be used
