@@ -25,6 +25,8 @@ def record_audio():
         frames_per_buffer=FRAMES_PER_BUFFER
     )
 
+    print("I'm listening...")
+
     # Initialize empty frames and number of seconds, which will be used to establish number of samples within recording
     frames = []
     seconds = 1
