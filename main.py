@@ -14,3 +14,5 @@ from tf_helper import preprocess_buffer
 # Get commands from Colab
 commands = ['stop', 'yes', 'right', 'left', 'go', 'up', 'down', 'no']
 
+# Load model from saved_model
+loaded_model = models.load_model("saved_model")
