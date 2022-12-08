@@ -26,22 +26,20 @@ def get_spectrogram(waveform):
     return spectrogram
 
 # Helper method for normalizing the waveform and getting the spectrogram
-def preprocess_buffer(waveform):
+def preprocess_audiobuffer(waveform):
     """
-    np.array waveform size/shape: (16000,)
+    waveform: ndarray of size (16000, )
     
-    output: spectrogram tensor with size/shape: (1, `height`, `width`, `channels`)
+    output: Spectogram Tensor of size: (1, `height`, `width`, `channels`)
     """
-    # Verify pipeline
-    waveform = waveform / 32768
+    #  normalize from [-32768, 32767] to [-1, 1]
+    waveform =  waveform / 32768
+
     waveform = tf.convert_to_tensor(waveform, dtype=tf.float32)
-    # waveform
 
-    # Get spectrogram
-    spec = get_spectrogram(waveform)
-
-    # Add one dimension to the spectrogram
-    spec = tf.expand_dims(spec, 0)
-
-    # Return the spectrogram
-    return spec
+    spectogram = get_spectrogram(waveform)
+    
+    # add one dimension
+    spectogram = tf.expand_dims(spectogram, 0)
+    
+    return spectogram
