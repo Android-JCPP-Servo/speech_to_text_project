@@ -26,3 +26,15 @@ def predict_audio():
     command = commands[label_pred[0]]
     print("Predicted label:", command)
     return command
+
+# Run full program
+if __name__ == "__main__":
+    # While program is running...
+    while True:
+        # Get the predicted command
+        command = predict_audio()
+        # If the command is "stop"...
+        if command == "stop":
+            # Stop the program
+            terminate()
+            break
