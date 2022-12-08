@@ -26,7 +26,7 @@ def get_spectrogram(waveform):
     return spectrogram
 
 # Helper method for normalizing the waveform and getting the spectrogram
-def preprocess_audiobuffer(waveform):
+def preprocess_buffer(waveform):
     """
     waveform: ndarray of size (16000, )
     
