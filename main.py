@@ -11,3 +11,6 @@ from tensorflow.keras import models
 from mic_listener import record_audio, terminate
 from tf_helper import preprocess_buffer
 
+# Get commands from Colab
+commands = ['stop', 'yes', 'right', 'left', 'go', 'up', 'down', 'no']
+
